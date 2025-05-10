@@ -1,0 +1,29 @@
+# === Java & Gradle ===
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# === IntelliJ IDEA ===
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# === OS/툴 자동 생성 ===
+.DS_Store
+Thumbs.db
+
+# === 로그 파일 (옵션) ===
+*.log
+
+# === Wrapper 중복 제거 (하위 모듈 전용 wrapper 삭제 대상) ===
+**/gradlew
+**/gradlew.bat
+**/gradle/wrapper/gradle-wrapper.jar
+**/gradle/wrapper/gradle-wrapper.properties
+
+# === 테스트 리포트 (Gradle) ===
+**/reports/
+**/test-results/
