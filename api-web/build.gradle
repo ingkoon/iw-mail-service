@@ -1,0 +1,64 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.5'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.iw-automotive'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// ✅ Spring Boot Web + MVC
+	implementation 'org.springframework.boot:spring-boot-starter-web:3.4.5'
+
+	// ✅ 유효성 검증 (@Valid, @NotBlank 등)
+	implementation 'org.springframework.boot:spring-boot-starter-validation:3.4.5'
+
+	// ✅ Spring Security (인증/인가)
+	implementation 'org.springframework.boot:spring-boot-starter-security:3.4.5'
+
+	// ✅ JWT (토큰 인증 시 사용) - 선택 사항
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	// ✅ JSON 직렬화/역직렬화
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+
+	// ✅ 공통 모듈 및 도메인 의존성
+	implementation project(':common')
+	implementation project(':domain-user')
+	implementation project(':domain-mail')
+//	implementation project(':infrastructure')
+
+	// ✅ Lombok
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+	// ✅ 테스트
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.4.5'
+	testImplementation 'org.springframework.security:spring-security-test:6.2.3'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
+}
+
+tasks.register("prepareKotlinBuildScriptModel") {}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
