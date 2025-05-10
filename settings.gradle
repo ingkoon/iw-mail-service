@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'iw-mail-service'
+
+include 'common'
+include 'domain-user'
+include 'domain-mail'
+include 'api-web'
+//include 'infrastructure'
